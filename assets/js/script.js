@@ -26,3 +26,15 @@ var events14 = JSON.parse(localStorage.getItem('hour14')) || "";
 var events15 = JSON.parse(localStorage.getItem('hour15')) || "";
 var events16 = JSON.parse(localStorage.getItem('hour16')) || "";
 var events17 = JSON.parse(localStorage.getItem('hour17')) || "";
+
+// Generate all timeblocks and insert saved local storage data
+$.each(hours, function (index, value) {
+    events = [events9, events10, events11, events12, events13, events14, events15, events16, events17]
+    $(".container").append("<div class='row'><div class='col-2 hour text-right' id='hour" +
+        (index + 9) + "'><span>" + value.format("h A") + "</span></div><div class='col-8 event-group' id='timeblock" +
+        (index + 9) + "'><textarea class='events col-12' id='eventblock" + (index + 9) + "'>" + events[index] + "</textarea></div>" +
+        "<div class='col-2 save-delete' id='save-delete" + (index + 9) + "'><i class='fas fa-save' title='Save Event'></i> <i class='fas fa-trash' title='Remove Event'></i></div></div></div>");
+});
+
+// Display current day at top of planner
+$("#currentDay").text(currentDay);
